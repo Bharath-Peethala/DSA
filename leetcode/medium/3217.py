@@ -41,6 +41,24 @@ class Solution(object):
             iterator = iterator.next
         return newHead.next
     
+    def modifiedList_sol(self, nums, head):
+        nums = {i for i in nums}
+        while head and head.val in nums:
+            head = head.next
+
+        if not head:
+            return None
+
+        iterator = head.next
+        prev = head
+        while(iterator):
+            if iterator.val not in nums:
+                prev.next = iterator
+                prev = iterator
+            iterator = iterator.next
+        prev.next = None
+        return head
+    
 singleLinkedList = ListNode()
 listValues = [1,2,1,2,1,2]
 nums = [2]
